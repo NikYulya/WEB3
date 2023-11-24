@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторная работа №3</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+</head>
+<body>
+    <main>
+        <h2>Продаются автомобили:</h2>
+        <div class="flower-container">
+            <div class="flower-row">
+                <div class="flower">
+                    <img src="car1.jpg" alt="Car 1" title="ROMEO - 10 320 000 ₽">
+                    <img src="car2.jpg" alt="Car 2" title="ALPINE - 4 775 000 ₽">
+                </div>
+            </div>
+            <div class="flower-row">
+                <div class="flower">
+                    <img src="car3.jpg" alt="Car 3" title="MARTIN - 2 700 000 ₽">
+                    <img src="car4.jpg" alt="Car 4" title="AURUS - 5 200 000 ₽">
+                </div>
+            </div>
+        </div>
+        <form>
+            <input type="text" id="flower-info-input" placeholder="Информация о машине" readonly>
+        </form>
+        <h2>Слайд-шоу автомобилей</h2>
+        <div class="slideshow" id="flower-slideshow">
+            <img class="slideshow-image" src="car1.jpg" alt="Slideshow 1">
+            <img class="slideshow-image" src="car2.jpg" alt="Slideshow 2">
+            <img class="slideshow-image" src="car3.jpg" alt="Slideshow 3">
+            <img class="slideshow-image" src="car4.jpg" alt="Slideshow 4">
+        </div>
+        <div class="slideshow-controls">
+            <button id="prev-flower-slide">Предыдущий слайд</button>
+            <button id="next-flower-slide">Следующий слайд</button>
+        </div>
+    </main>
+    <h2>Животные:</h2>
+    
+    <table id="animalTable">
+        <tr>
+            <td onmouseover="showImage('animal1.jpg')" onmouseout="hideImage()">Лиса</td>
+        </tr>
+        <tr>
+            <td onmouseover="showImage('animal2.jpg')" onmouseout="hideImage()">Белка</td>
+        </tr>
+        <tr>
+            <td onmouseover="showImage('animal3.jpg')" onmouseout="hideImage()">Медведь</td>
+        </tr>
+        <td><img id="animalImage" alt=""></td>
+    </table>
+    
+    <h2>Слайд-шоу животных</h2>
+    <div class="slideshow" id="animal-slideshow">
+        <img class="slideshow-image" src="animal1.jpg" alt="">
+        <img class="slideshow-image" src="animal2.jpg" alt="">
+        <img class="slideshow-image" src="animal3.jpg" alt="">
+    </div>
+    <div class="slideshow-controls">
+        <button id="prev-animal-slide">Предыдущий слайд</button>
+        <button id="next-animal-slide">Следующий слайд</button>
+    </div>
+    <div class="slideshow-controls">
+        <button onclick="performArithmeticOperation()">Выполнить арифметическую операцию</button>
+    </div>
+    <div class="slideshow-controls">
+    <a href="today.html">
+        <button>Какой сегодня день</button>
+      </a>
+      <a href="life.html">
+        <button>Сколько дней Вы прожили</button>
+      </a>
+      <a href="koord.html">
+        <button>Расстояние до начала координат</button>
+      </a>
+      <a href="bd.html">
+        <button>В какой день Вы родились</button>
+      </a>
+      <a href="hol.html">
+        <button>Количество дней до каникул</button>
+      </a>
+      <a href="geom.html">
+        <button>Площадь прямоугольника</button>
+      </a>
+      <a href="gen.html">
+        <button>Генератор страницы</button>
+      </a>
+      <a href="gen2.html">
+        <button>Генератор страницы №2</button>
+      </a>
+      <a href="aboutme.html">
+        <button>Генератор биографии</button>
+      </a>
+      <a href="story.html">
+        <button>Генератор сказок</button>
+      </a>
+    </div>
+
+
+
+
+
+    <script>
+        const flowerInfoInput = document.getElementById('flower-info-input');
+        const flowerImages = document.querySelectorAll('.flower img');
+        const flowerSlideshow = setupSlideshow('flower-slideshow', 'prev-flower-slide', 'next-flower-slide');
+
+        flowerImages.forEach((image, index) => {
+            image.addEventListener('mouseover', () => {
+                const info = image.getAttribute('title');
+                flowerInfoInput.value = info;
+            });
+
+            image.addEventListener('mouseout', () => {
+                flowerInfoInput.value = '';
+            });
+        });
+
+        // Животные
+        const animalSlideshow = setupSlideshow('animal-slideshow', 'prev-animal-slide', 'next-animal-slide');
+
+        function showImage(imageName) {
+            document.getElementById("animalImage").src = imageName;
+        }
+
+        function hideImage() {
+            document.getElementById("animalImage").src = "";
+        }
+
+        function setupSlideshow(slideshowId, prevButtonId, nextButtonId) {
+            const slideshowImages = document.querySelectorAll(`#${slideshowId} .slideshow-image`);
+            const prevSlideButton = document.getElementById(prevButtonId);
+            const nextSlideButton = document.getElementById(nextButtonId);
+
+            let currentSlideIndex = 0;
+
+            function showNextSlide() {
+                currentSlideIndex = (currentSlideIndex + 1) % slideshowImages.length;
+                showSlide(currentSlideIndex, slideshowImages);
+            }
+
+            function showPrevSlide() {
+                currentSlideIndex = (currentSlideIndex - 1 + slideshowImages.length) % slideshowImages.length;
+                showSlide(currentSlideIndex, slideshowImages);
+            }
+
+            prevSlideButton.addEventListener('click', showPrevSlide);
+            nextSlideButton.addEventListener('click', showNextSlide);
+
+            // Показываем первый слайд при загрузке страницы
+            showSlide(currentSlideIndex, slideshowImages);
+
+            return {
+                showNextSlide,
+                showPrevSlide
+            };
+        }
+
+        function showSlide(index, slides) {
+            slides.forEach((slide) => {
+                slide.style.display = 'none';
+            });
+
+            slides[index].style.display = 'block';
+        }
+    </script>
+    
+</main>
+
+<script>
+    // Ваши функции для слайд-шоу и информации о машинах и животных
+
+    // Новая функция для выполнения арифметической операции
+    function performArithmeticOperation() {
+        // Получаем значения x, y и оператора
+        const x = parseFloat(prompt("Введите число x:"));
+        const y = parseFloat(prompt("Введите число y:"));
+        const operator = prompt("Введите оператор (+, -, *, /):");
+
+        // Проверяем валидность оператора и значений
+        if (isNaN(x) || isNaN(y) || !['+', '-', '*', '/'].includes(operator)) {
+            alert("Ошибка в введенных данных!");
+            return;
+        }
+
+        // Выполняем операцию
+        let result;
+        switch (operator) {
+            case '+':
+                result = x + y;
+                break;
+            case '-':
+                result = x - y;
+                break;
+            case '*':
+                result = x * y;
+                break;
+            case '/':
+                // Проверяем деление на 0
+                if (y === 0) {
+                    alert("Ошибка: деление на 0!");
+                    return;
+                }
+                result = x / y;
+                break;
+        }
+
+        // Выводим результат
+        alert(`Результат операции ${x} ${operator} ${y} равен: ${result}`);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+ /* Цвет фона*/
+body {
+    background-color: #87CEEB;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+  /* цвет заголовка*/
+h2 {
+    color: #800080;
+}
+
+ /*Размер всех картинок*/
+img {
+    width: 250px;
+    height: 200px;
+}
+
+ /* Кнопки у машин слайда*/
+.slideshow-controls button {
+    font-size: 18px;
+    background-color: #800080;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+ 
+ /* Выравнивание картинки слайда*/
+.slideshow {
+    text-align: center;
+    width: 95%;
+    margin: 0 auto; /* Делаем блок центрированным по горизонтали */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Изменили выравнивание на левое */
+    justify-content: center;
+}
+
+/* Поискова о машинах */
+#flower-info-input {
+    width: 20%; /* Занимает всю доступную ширину формы */
+    padding: 10px; /* Увеличиваем отступ внутри текстового поля */
+    font-size: 16px; /* Увеличиваем размер шрифта */
+    border: 5px solid #800080; /* Добавляем рамку вокруг текстового поля */
+  }
+/* Животные вылет */
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border: 20px solid #800080;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  h1 {
+    color: #800080; /* Цвет текста заголовка */
+  }
+  button {
+    font-size: 18px;
+    background-color: #800080;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #4B0082; /* Темно-фиолетовый цвет при наведении */
+  }
+
+
+  input {
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #999;
+  }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторная работа №3</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+<head>
+  <style>
+    body {
+  
+      text-align: center;
+      margin: 20px;
+    }
+
+  </style>
+
+<body>
+  <h1>До каникул</h1>
+
+  <!-- Форма для ввода даты начала каникул -->
+  <form id="vacationForm">
+    <label for="vacationDate">Введите дату начала каникул:</label>
+    <input type="date" id="vacationDate" name="vacationDate" required>
+    <br>
+    <button type="button" onclick="calculateDaysUntilVacation()">Показать сколько дней до каникул</button>
+  </form>
+
+  <!-- Поле для вывода результата -->
+  <p id="result"></p>
+
+  <script>
+    function calculateDaysUntilVacation() {
+      // Получаем значение даты начала каникул из поля формы
+      const vacationDate = new Date(document.getElementById('vacationDate').value);
+
+      // Проверяем валидность введенных данных
+      if (isNaN(vacationDate.getTime())) {
+        alert("Пожалуйста, введите корректную дату.");
+        return;
+      }
+
+      // Получаем текущую дату
+      const currentDate = new Date();
+
+      // Вычисляем количество дней до каникул
+      const daysUntilVacation = Math.ceil((vacationDate - currentDate) / (1000 * 60 * 60 * 24));
+
+      // Выводим результат
+      document.getElementById('result').textContent = `До каникул осталось ${daysUntilVacation} дней.`;
+    }
+  </script>
+</body>
+</html>

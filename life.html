@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторная работа №3</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+<head>
+  <title>Количество дней жизни</title>
+  <style>
+    body {
+      text-align: center;
+      margin: 50px; 
+    }
+  </style>
+
+<body>
+  
+  <h1>Количество дней жизни</h1>
+  <label for="birthdate">Введите дату вашего рождения:</label>
+  <input type="date" id="birthdate">
+  <br>
+  <button onclick="calculateDays()">Рассчитать</button>
+  <button onclick="goBack()">Назад</button>
+  <p id="result"></p>
+
+  <script>
+      function goBack() {
+      window.history.back();
+    }
+    function calculateDays() {
+      const birthdate = new Date(document.getElementById('birthdate').value);
+      const currentDate = new Date();
+
+      if (isNaN(birthdate.getTime())) {
+        alert('Пожалуйста, введите корректную дату рождения.');
+        return;
+      }
+
+      const millisecondsInDay = 1000 * 60 * 60 * 24;
+      const daysLived = Math.floor((currentDate - birthdate) / millisecondsInDay);
+
+      document.getElementById('result').textContent = `Вы прожили ${daysLived} дней.`;
+    }
+  </script>
+</body>
+</html>

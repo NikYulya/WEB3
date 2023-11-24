@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторная работа №3</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+<head>
+  <title>Текущая дата</title>
+
+<body >
+  <h1>Текущая дата</h1>
+  <p id="date"></p>
+  <button onclick="goBack()">Назад</button>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    // Отображение текущей даты
+    const currentDate = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('date').textContent = currentDate.toLocaleDateString('ru-RU', options);
+  </script>
+</body>
+<style>
+  body {
+    text-align: center;
+    margin: 50px; 
+  }
+</style>
+</html>

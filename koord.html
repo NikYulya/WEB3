@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторная работа №3</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+<head>
+  <style>
+    /* Ваши стили для фона и кнопок */
+    body {
+      text-align: center;
+      margin: 20px;
+    }
+
+  </style>
+
+<body>
+  <h1>Расстояние до начала координат</h1>
+  
+  <!-- Форма для ввода координат -->
+  <form id="coordinatesForm">
+    <label for="xCoord">X-координата:</label>
+    <input type="text" id="xCoord" name="xCoord" required>
+    <br>
+    <label for="yCoord">Y-координата:</label>
+    <input type="text" id="yCoord" name="yCoord" required>
+    <br>
+    <button type="button" onclick="calculateDistance()">Вычислить расстояние</button>
+   
+  </form>
+
+  <!-- Поле для вывода результата -->
+  <p id="result"></p>
+
+  <script>
+   
+    function calculateDistance() {
+      // Получаем значения X и Y из полей формы
+      const x = parseFloat(document.getElementById('xCoord').value);
+      const y = parseFloat(document.getElementById('yCoord').value);
+
+      // Проверяем валидность введенных данных
+      if (isNaN(x) || isNaN(y)) {
+        alert("Пожалуйста, введите корректные координаты.");
+        return;
+      }
+
+      // Вычисляем расстояние до начала координат
+      const distance = Math.sqrt(x * x + y * y);
+
+      // Выводим результат
+      document.getElementById('result').textContent = `Расстояние до начала координат: ${distance.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>

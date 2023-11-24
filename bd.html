@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторная работа №3</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+<head>
+  <title>Дата рождения</title>
+  <style>
+    /* Ваши стили для фона и кнопок */
+    body {
+      text-align: center;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Дата вашего рождения</h1>
+  
+  <!-- Форма для ввода даты рождения -->
+  <form id="birthdayForm">
+    <label for="birthdate">Введите дату рождения:</label>
+    <input type="date" id="birthdate" name="birthdate" required>
+    <br>
+    <button type="button" onclick="showBirthdateDetails()">Показать детали</button>
+
+     
+  </form>
+
+  <!-- Поле для вывода результата -->
+  <p id="result"></p>
+
+  <script>
+    
+    function showBirthdateDetails() {
+      // Получаем значение даты из поля формы
+      const birthdate = new Date(document.getElementById('birthdate').value);
+
+      // Проверяем валидность введенных данных
+      if (isNaN(birthdate.getTime())) {
+        alert("Пожалуйста, введите корректную дату.");
+        return;
+      }
+
+      // Массивы для месяцев и дней недели
+      const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+      const daysOfWeek = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
+
+      // Получаем день недели, число, месяц и год
+      const dayOfWeek = daysOfWeek[birthdate.getDay()];
+      const day = birthdate.getDate();
+      const month = months[birthdate.getMonth()];
+      const year = birthdate.getFullYear();
+
+      // Выводим результат
+      document.getElementById('result').textContent = `Дата рождения: ${dayOfWeek}, ${day} ${month} ${year} года.`;
+    }
+  </script>
+</body>
+</html>

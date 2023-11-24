@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторная работа №3</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+<head>
+
+  <title>Генератор страницы №2</title>
+  
+ <style>
+    body {
+      background:   #87CEEB;;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    h1 {
+    color: #800080; /* Цвет текста заголовка */
+  }
+    .slideshow-controls button {
+      font-size: 20px; /* Увеличиваем размер шрифта кнопок */
+      background-color: #800080;
+      color: #fff; /* Изменяем цвет текста кнопок */
+      border: none;
+      padding: 10px 20px; /* Увеличиваем отступы внутри кнопок */
+      margin: 10px; /* Увеличиваем внешние отступы вокруг кнопок */
+      cursor: pointer;
+      border-radius: 5px; /* Добавляем скругление углов */
+    }
+  </style>
+<body>
+  <div class="form-container">
+    <h1>Генератор страницы №2</h1>
+
+    <form id="image-form">
+      <label for="actor">Художник:</label>
+      <select id="actor">
+        <option value="art3.jpg">Иван Иванович Шишкин</option>
+        <option value="art2.jpg">Илья Ефимович Репин</option>
+        <option value="art1.jpg">Эдвард Мунк</option>
+      </select>
+
+      <label for="caption">Подпись:</label>
+      <input type="text" id="caption" placeholder="Введите подпись" required>
+
+      <label for="background-image">Картинка для фона:</label>
+      <select id="background-image">
+        <option value="fon1.jpg">Абстракция</option>
+        <option value="fon2.jpg">Пейзаж</option>
+        <option value="fon3.jpg">Архитектура</option>
+      </select>
+
+      <label for="text-decoration">Декорирование текста:</label>
+      <input type="checkbox" id="italic" name="text-decoration" value="italic">
+      <label for="italic">Курсив</label>
+      <input type="checkbox" id="underline" name="text-decoration" value="underline">
+      <label for="underline">Подчеркивание</label>
+      <input type="checkbox" id="bold" name="text-decoration" value="bold">
+      <label for="bold">Жирный</label>
+
+      <button type="reset">Сброс</button>
+      <button type="submit">Показать</button>
+    </form>
+  </div>
+
+  <div class="slideshow-controls button">
+    <a href="index.html">
+      <button>Вернуться на основную страницу</button>
+    </a>
+  </div>
+
+  <script>
+    const imageForm = document.getElementById('image-form');
+
+    imageForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const selectedActor = document.getElementById('actor').value;
+      const backgroundImage = document.getElementById('background-image').value;
+      const caption = document.getElementById('caption').value;
+      const textDecorations = [];
+
+      const italicCheckbox = document.getElementById('italic');
+      const underlineCheckbox = document.getElementById('underline');
+      const boldCheckbox = document.getElementById('bold');
+
+      if (italicCheckbox.checked) {
+        textDecorations.push('font-style: italic;');
+      }
+      if (underlineCheckbox.checked) {
+        textDecorations.push('text-decoration: underline;');
+      }
+      if (boldCheckbox.checked) {
+        textDecorations.push('font-weight: bold;');
+      }
+
+      const textDecorationsStyle = textDecorations.join(' ');
+
+      const actorName = document.getElementById('actor').options[document.getElementById('actor').selectedIndex].text;
+
+      const imageHTML = `
+        <html>
+        <body style="background-image: url('${backgroundImage}');
+                    background-size: cover;
+                    text-align: center; margin: 0; height: 100vh;">
+          <h1 style="${textDecorationsStyle} font-size: 40px;">${actorName}</h1>
+          <img src="${selectedActor}" alt="Выбранный художник" style="width: 600px; height: 400px;">
+          <h1 style="${textDecorationsStyle}">${caption}</h1>
+          <button onclick="window.close()">Закрыть</button>
+        </body>
+        </html>
+      `;
+
+      const newWindow = window.open();
+      newWindow.document.write(imageHTML);
+      newWindow.document.close();
+    });
+
+    imageForm.addEventListener('reset', function () {
+      imageForm.reset();
+    });
+  </script>
+</body>
+</html>

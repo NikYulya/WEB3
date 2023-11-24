@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторная работа №3</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+<head>
+
+    <title>Генератор сказок</title>
+    <style>
+        body {
+            text-align: center;
+  
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+      
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+    
+
+        #story {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            text-decoration: none;
+        }
+
+        .button-container button {
+            background-color: #800080;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+
+<body>
+    <h2>Генератор сказок</h2>
+    <form id="storyForm">
+        <label for="character">Главный герой:</label>
+        <input type="text" id="character" name="character" required>
+
+        <label for="place">Место событий:</label>
+        <input type="text" id="place" name="place" required>
+
+        <label for="adjective">Прилагательное:</label>
+        <input type="text" id="adjective" name="adjective" required>
+
+        <label for="action">Действие:</label>
+        <input type="text" id="action" name="action" required>
+
+        <button type="button" onclick="generateStory()">Сгенерировать сказку</button>
+    </form>
+
+    <div id="story"></div>
+
+    <div class="button-container">
+        <a href="index.html">
+            <button>Вернуться на главную страницу</button>
+        </a>
+    </div>
+
+    <script>
+        function generateStory() {
+            const character = document.getElementById('character').value;
+            const place = document.getElementById('place').value;
+            const adjective = document.getElementById('adjective').value;
+            const action = document.getElementById('action').value;
+
+            const story = `
+                <h2>Сказка</h2>
+                <p>Жили-были в далеком царстве ${place},</p>
+                <p>Главным героем был ${character},</p>
+                <p>Который был ${adjective}, как никто другой.</p>
+                <p>И вот однажды, когда ${character} ${action},</p>
+                <p>Произошло что-то волшебное и необыкновенное.</p>
+                <p>И жили они долго и счастливо в своем ${place}.</p>
+            `;
+
+            document.getElementById('story').innerHTML = story;
+        }
+    </script>
+</body>
+</html>
